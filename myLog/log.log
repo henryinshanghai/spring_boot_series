@@ -1,0 +1,42 @@
+2021-04-20 23:35:41.280  INFO 25024 --- [main] c.h.s.SelfConfigAndAutoConfigApplication : Starting SelfConfigAndAutoConfigApplication using Java 11.0.9 on DESKTOP-G7RLGS6 with PID 25024 (E:\develop\tryout_springBoot\selfConfig_and_autoConfig\target\classes started by HenryInSH in E:\develop\tryout_springBoot\selfConfig_and_autoConfig)
+2021-04-20 23:35:41.282  INFO 25024 --- [main] c.h.s.SelfConfigAndAutoConfigApplication : No active profile set, falling back to default profiles: default
+2021-04-20 23:35:41.879  INFO 25024 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9090 (http)
+2021-04-20 23:35:41.885  INFO 25024 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-04-20 23:35:41.888  INFO 25024 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-04-20 23:35:41.931  INFO 25024 --- [main] o.a.c.c.C.[.[localhost].[/selfConfig]    : Initializing Spring embedded WebApplicationContext
+2021-04-20 23:35:41.932  INFO 25024 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 606 ms
+2021-04-20 23:35:42.028  INFO 25024 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-20 23:35:42.035 DEBUG 25024 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-04-20 23:35:42.068 DEBUG 25024 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 4 mappings in 'requestMappingHandlerMapping'
+2021-04-20 23:35:42.082 DEBUG 25024 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-04-20 23:35:42.086 DEBUG 25024 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-04-20 23:35:42.123  INFO 25024 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9090 (http) with context path '/selfConfig'
+2021-04-20 23:35:42.132  INFO 25024 --- [main] c.h.s.SelfConfigAndAutoConfigApplication : Started SelfConfigAndAutoConfigApplication in 1.18 seconds (JVM running for 1.961)
+2021-04-20 23:36:27.241  INFO 25024 --- [http-nio-9090-exec-1] o.a.c.c.C.[.[localhost].[/selfConfig]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-20 23:36:27.243  INFO 25024 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-04-20 23:36:27.243 DEBUG 25024 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2021-04-20 23:36:27.243 DEBUG 25024 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2021-04-20 23:36:27.243 DEBUG 25024 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2021-04-20 23:36:27.243 DEBUG 25024 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@731408a3
+2021-04-20 23:36:27.244 DEBUG 25024 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@2800e0a9
+2021-04-20 23:36:27.244 DEBUG 25024 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2021-04-20 23:36:27.244  INFO 25024 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-04-20 23:36:27.249 DEBUG 25024 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/selfConfig/authorBrief", parameters={}
+2021-04-20 23:36:27.253 DEBUG 25024 --- [http-nio-9090-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.henry.selfConfig_and_autoConfig.SelfConfigAndAutoConfigApplication#author()
+2021-04-20 23:36:27.268 DEBUG 25024 --- [http-nio-9090-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Using 'text/html', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [text/plain, */*, text/plain, */*, application/json, application/*+json, application/json, application/*+json]
+2021-04-20 23:36:27.269 DEBUG 25024 --- [http-nio-9090-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Writing ["author name is: henry,liu, author's age is: 26"]
+2021-04-20 23:36:27.274 DEBUG 25024 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-04-20 23:46:13.788  INFO 22808 --- [main] c.h.s.SelfConfigAndAutoConfigApplication : Starting SelfConfigAndAutoConfigApplication using Java 11.0.9 on DESKTOP-G7RLGS6 with PID 22808 (E:\develop\tryout_springBoot\selfConfig_and_autoConfig\target\classes started by HenryInSH in E:\develop\tryout_springBoot\selfConfig_and_autoConfig)
+2021-04-20 23:46:13.789  INFO 22808 --- [main] c.h.s.SelfConfigAndAutoConfigApplication : The following profiles are active: dev
+2021-04-20 23:46:14.383  INFO 22808 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2021-04-20 23:46:14.389  INFO 22808 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-04-20 23:46:14.389  INFO 22808 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-04-20 23:46:14.432  INFO 22808 --- [main] o.a.c.c.C.[.[localhost].[/selfConfig]    : Initializing Spring embedded WebApplicationContext
+2021-04-20 23:46:14.433  INFO 22808 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 587 ms
+2021-04-20 23:46:14.530  INFO 22808 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-20 23:46:14.536 DEBUG 22808 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-04-20 23:46:14.567 DEBUG 22808 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 4 mappings in 'requestMappingHandlerMapping'
+2021-04-20 23:46:14.581 DEBUG 22808 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-04-20 23:46:14.585 DEBUG 22808 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-04-20 23:46:14.623  INFO 22808 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path '/selfConfig'
+2021-04-20 23:46:14.631  INFO 22808 --- [main] c.h.s.SelfConfigAndAutoConfigApplication : Started SelfConfigAndAutoConfigApplication in 1.135 seconds (JVM running for 1.912)

@@ -1,0 +1,114 @@
+Application的类；
+作用：
+    1 启动Spring Boot项目；
+    2 作为Java应用的入口类型；
+手段：
+    在启动类的main方法中，
+    使用 SpringApplication类型的静态方法run()，
+    传入当前类型的class对象作为参数...
+
+===
+@SpringBootApplication
+是：Spring Boot提供的一个组合注解；
+作用：启用Spring Boot的一些个基础特性。
+用法：
+    1 在启动类上添加@SpringBootApplication注解；
+    2 Spring Boot会自动扫描 此注解所在的类的同级包 & 下级包中的Bean；
+最佳实践：
+    把入口类型放置在 groupId + artifactId组合的包名下面。
+
+===
+注解的组件之一：@EnableAutoConfiguration
+作用：使得Spring Boot根据类路径中的jar包依赖 来 为当前项目进行自动化配置；
+用法：
+    1 在pom.xml中添加 spring-boot-starter-web依赖；- maven会在类路径中自动添加 Tomcat 以及 Spring MVC的依赖；
+    2 由于 @EnableAutoConfiguration注解的存在，Spring Boot 就会对 Tomcat 与 SpringMVC进行自动化的配置。
+
+===
+1 定制/配置/设置 项目启动时的Banner图；
+默认的Banner图：
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+手段：创建一个banner图的文件，然后放置在 src/main/resources 目录下。
+
+
+2 关闭启动时的Banner图；
+手段：
+    1 创建SpringApplication类型的实例；
+    2 使用实例的方法来对Banner的表现进行设置；
+
+------
+使用Spring Boot的配置文件 来 进行配置
+
+Spring Boot项目中的全局配置文件： application.properties;
+特征：
+    1 可以是.properties文件，也可以是.yml文件；
+    2 此配置文件放置在 src/main/resources 目录下 或者 类路径的/config目录下。
+作用：通过在 配置文件中添加/修改一些个配置，能够有预期地改变Spring Boot项目的行为。
+示例：
+    server.port=9090
+    server.servlet.context-path=/selfConfig
+
+===
+简化声明项目依赖所需要的代码 - starter pom
+口号：声明一个，引入一大堆；
+
+---
+配置方式的扩展(除了在properties文件中有效的配置项外):
+    xml配置 + 把xml配置文件导入到java代码；
+手段：@ImportResource("classpath:xxx.xml")
+
+---
+Java代码中使用配置信息的方式 aka 把配置信息外部化(externalize)
+
+方式1：使用命令行参数 来 进行信息的配置；
+原理：Spring Boot项目最终会得到一个jar包。而运行jar包只需要使用java -jar的命令即可
+命令： java -jar xxx.jar
+示例：
+修改项目启动时的Tomcat端口号 -
+    java -jar xxx.jar --server.port=9090
+
+方式2：把属性集中在一个属性文件中，然后以某种技术注入到Java代码中
+手段：@Value注解
+原理：取值并注入到Java类型中的字段上去
+用法：@Value(${属性名称})
+示例：
+    book.author=henryInSH
+    book.name=the return of little prince
+
+方式3：使用POJO类型的属性 来 一次性接收多个 属性文件中的属性。 aka 类型安全的配置
+手段：@ConfigurationProperties 注解
+原理：把 properties文件中的属性 与 一个Bean以及Bean的属性 相关联。
+用法：
+    1 在properties文件中添加 属性=值 的配置信息；
+    2 在Java类型上使用 @ConfigurationProperties注解 - 可以指定属性的前缀(用于对一堆属性进行分组)
+    3 在Java类型中直接定义 与属性同名的字段 - 这样属性就能够自动映射到字段上去
+    4 在Controller类型中，注入 Java类型的bean实例，检验 属性文件中的属性是否成功绑定到Java类型的字段上
+
+---
+一些非业务相关的配置信息：
+
+日志相关的配置
+logging.file=D:/mylog/log.log # 日志文件
+logging.level.org.springframework.web: DEBUG # 日志级别
+
+
+对profile的配置
+profile
+是：Spring提供的一种技术；
+作用：能够根据项目当前的运行环境，来 选择性地使用 与环境相对应的正确的属性配置文件。
+用法：
+    1 创建 为开发环境准备的配置文件 application-dev.properties;   配置Tomcat的启动端口号为8888
+    2 创建 为生产环境准备的配置文件 application-prod.properties;  配置Tomcat的启动端口号为80
+    3 在全局配置文件 application.properties 中，指定当前活跃的profile；
+    4 运行程序，查看项目的启动端口；
+    5 修改活跃的profile属性，再次运行程序，查看启动端口 - 以此检查 profile的配置是否生效；
+
+
+
+
