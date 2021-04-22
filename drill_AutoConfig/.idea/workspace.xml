@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fa08a92-4713-4430-a04f-f35f435eb5e4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/henry/HelloServiceAutoConfiguration_04.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/henry/HelloServiceProperties_02.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/henry/HelloService_03.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/henry/wwh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/spring.factories" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../drill_AutoConfig_using/src/main/java/com/henry/drill_starter_using/wwh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../selfConfig_and_autoConfig/src/main/java/com/henry/selfConfig_and_autoConfig/drill_03" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../selfConfig_and_autoConfig/src/main/java/com/henry/selfConfig_and_autoConfig/mechanism_02" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../myLog/log.log" beforeDir="false" afterPath="$PROJECT_DIR$/../myLog/log.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../selfConfig_and_autoConfig/src/main/java/com/henry/selfConfig_and_autoConfig/wwh" beforeDir="false" afterPath="$PROJECT_DIR$/../selfConfig_and_autoConfig/src/main/java/com/henry/selfConfig_and_autoConfig/wwh_01" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../drill_AutoConfig_using/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../drill_AutoConfig_using/src/main/resources/application.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -338,7 +329,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1619105678353" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1619105910660" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -369,12 +360,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619100573152</updated>
-      <workItem from="1619100577182" duration="4911000" />
+      <workItem from="1619100577182" duration="5141000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4911000" />
+    <option name="totallyTimeSpent" value="5141000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
