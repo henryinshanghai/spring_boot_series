@@ -1,0 +1,9 @@
+练习：自己写一个 start pom
+宏观作用：
+    1 能够使用自动配置；
+    2 具有更通用的耦合度更低的配置。
+具体作用/任务：
+    1 当某个类型存在时，自动配置这个类型的Bean；
+    2 能够在 application.properties 属性文件中来配置 Bean的属性；
+参考：项目 drill_autoConfig
+

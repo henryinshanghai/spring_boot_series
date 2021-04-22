@@ -40,3 +40,17 @@
 2021-04-20 23:46:14.585 DEBUG 22808 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
 2021-04-20 23:46:14.623  INFO 22808 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path '/selfConfig'
 2021-04-20 23:46:14.631  INFO 22808 --- [main] c.h.s.SelfConfigAndAutoConfigApplication : Started SelfConfigAndAutoConfigApplication in 1.135 seconds (JVM running for 1.912)
+2021-04-20 23:46:33.138  INFO 13844 --- [main] c.h.s.SelfConfigAndAutoConfigApplication : Starting SelfConfigAndAutoConfigApplication using Java 11.0.9 on DESKTOP-G7RLGS6 with PID 13844 (E:\develop\tryout_springBoot\selfConfig_and_autoConfig\target\classes started by HenryInSH in E:\develop\tryout_springBoot\selfConfig_and_autoConfig)
+2021-04-20 23:46:33.142  INFO 13844 --- [main] c.h.s.SelfConfigAndAutoConfigApplication : The following profiles are active: prod
+2021-04-20 23:46:34.609  INFO 13844 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2021-04-20 23:46:34.619  INFO 13844 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-04-20 23:46:34.620  INFO 13844 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-04-20 23:46:34.711  INFO 13844 --- [main] o.a.c.c.C.[.[localhost].[/selfConfig]    : Initializing Spring embedded WebApplicationContext
+2021-04-20 23:46:34.712  INFO 13844 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1490 ms
+2021-04-20 23:46:34.894  INFO 13844 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-20 23:46:34.900 DEBUG 13844 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-04-20 23:46:34.984 DEBUG 13844 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 4 mappings in 'requestMappingHandlerMapping'
+2021-04-20 23:46:35.007 DEBUG 13844 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-04-20 23:46:35.020 DEBUG 13844 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-04-20 23:46:35.093  INFO 13844 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path '/selfConfig'
+2021-04-20 23:46:35.104  INFO 13844 --- [main] c.h.s.SelfConfigAndAutoConfigApplication : Started SelfConfigAndAutoConfigApplication in 2.486 seconds (JVM running for 2.941)

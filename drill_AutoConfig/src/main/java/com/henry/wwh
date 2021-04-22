@@ -1,0 +1,2 @@
+为了让自动配置能够发挥作用，需要满足最外层的条件判断：
+    1 在 /src/main/resources 目录下 包含有 META-INF/spring.factories文件；

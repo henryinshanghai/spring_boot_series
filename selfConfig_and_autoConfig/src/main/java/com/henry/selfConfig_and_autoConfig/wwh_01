@@ -85,10 +85,10 @@ Java代码中使用配置信息的方式 aka 把配置信息外部化(externaliz
 手段：@ConfigurationProperties 注解
 原理：把 properties文件中的属性 与 一个Bean以及Bean的属性 相关联。
 用法：
-    1 在properties文件中添加 属性=值 的配置信息；
-    2 在Java类型上使用 @ConfigurationProperties注解 - 可以指定属性的前缀(用于对一堆属性进行分组)
-    3 在Java类型中直接定义 与属性同名的字段 - 这样属性就能够自动映射到字段上去
-    4 在Controller类型中，注入 Java类型的bean实例，检验 属性文件中的属性是否成功绑定到Java类型的字段上
+    step1 在properties文件中添加 属性=值 的配置信息；
+    step2 在Java类型上使用 @ConfigurationProperties注解 - 可以指定属性的前缀(用于对一堆属性进行分组)
+    step3 在Java类型中直接定义 与属性同名的字段 - 这样属性就能够自动映射到字段上去
+    step4 在Controller类型中，注入 Java类型的bean实例，检验 属性文件中的属性是否成功绑定到Java类型的字段上
 
 ---
 一些非业务相关的配置信息：

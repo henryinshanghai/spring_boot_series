@@ -1,0 +1,63 @@
+为什么 在启动类上添加了一个 @SpringBootApplication 注解 就能够自动配置许多特性呢？
+
+探究 注解发挥作用的原理：
+手段：先看看 Spring Boot开启了哪些个自动配置；
+实现方式：
+    1 运行jar时，添加 --debug参数；
+        java -jar xxx.jar --debug
+    2 在全局配置文件 application.properties 中 添加属性：
+        debug=true
+    3 在IDEA中启动Spring Boot项目时，添加VM选项：
+        -Ddebug
+        添加完成上面的配置后，启动项目时控制台中就能看到 开启了哪些个自动配置；
+
+原理探究：
+    @SpringBootApplication
+    核心注解： @EnableAutoConfiguration
+        核心语句： @Import({AutoConfigurationImportSelector.class})
+            方法：List<String> configurations = SpringFactoriesLoader.loadFactoryNames(this.getSpringFactoriesLoaderFactoryClass(), this.getBeanClassLoader());
+            作用：扫描带有 META/INF/spring.factories文件的jar包。- spring-boot-autoconfigure-1.3.0.x.jar中就有这个文件，所以会被扫描到
+
+            spring.factories文件里面都有啥？
+            书签2
+                属性=类型
+
+            打开其中的某个类型(condition包下的注解类型)，分析一波：
+                ConditionOnApplication
+                @Conditional({OnWebApplicationCondition.class})
+                具体条件：书签4 - 一系列的判断条件。
+
+===
+实例学习；Spring Boot的自动配置实例 - 对http的编码配置；
+Spring Boot是如何实现 “对http进行编码配置的呢”？
+
+"自动配置" 需要实现的目标/任务：
+1 在Spring容器中配置 CharacterEncodingFilter 这个类型的Bean；
+2 能够配置encoding 与 forceEncoding 这两个参数；
+
+--
+task1 配置 encoding 与 forceEncoding这两个参数；
+手段：定义一个POJO类型，用来接收 属性文件中的同名属性的值；
+特征：
+    1 POJO类型需要使用 @ConfigurationProperties 来注解；- 注解中可以使用prefix参数 来 指定属性的前缀
+    2 POJO类型中的 字段名称 需要与 属性文件中的属性名称 保持一致 - 这样才能够映射成功；
+    3 鉴于自动配置时，用户不会在 属性文件中添加任何属性，所以这里需要给 POJO中的字段 绑定默认值。
+Spring Boot中具体实现的POJO：
+    HttpEncodingProperties.java
+
+task2 (根据条件来)配置 CharacterEncodingFilter 这个Bean；
+手段：定义一个POJO类型，来作为 CharacterEncodingFilter 这个Bean的 Java配置（这是Spring中配置Bean属性的一种方式）；
+特征：
+    1 既然是配置类，类型上面就要添加 @Configuration；
+    2 由于 映射类型没有使用@Component来注解，所以这里不能直接@Autowired. 而需要使用 @EnableConfigurationProperties注解来指定 映射类型；
+    3 配置类型被Spring容器执行的条件 - 类路径中存在 CharacterEncodingFilter(要去配置的类型)
+    4 配置类型被Spring容器执行的条件2 - 属性文件中存在"spring.http.encoding=enabled"的键值对，如果没有设置，则默认认为已经设置。把条件判断结果设置为true
+    5 为了避免Spring容器重复创建 bean实例的开销 - 在创建Bean实例的方法上添加注解 @ConditionalOnMissingBean()
+Spring Boot中具体实现的POJO：
+    HttpEncodingAutoConfiguration.java
+
+
+
+
+
+
