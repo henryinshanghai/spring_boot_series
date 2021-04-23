@@ -5,5 +5,13 @@
 具体作用/任务：
     1 当某个类型存在时，自动配置这个类型的Bean；
     2 能够在 application.properties 属性文件中来配置 Bean的属性；
-参考：项目 drill_autoConfig
+参考：项目 drill_AutoConfig 与 drill_AutoConfig_using
+具体用法：
+    1 在drill_AutoConfig中 实现自动配置的特性：
+        - 把 drill_AutoConfig 项目打包成为一个jar包:
+        - 包含有META-INF/spring.factories;
+        - 有完整的POJO配置流程；
+    2 在 drill_AutoConfig 项目中，使用自动配置的特性；
+    
+
 
