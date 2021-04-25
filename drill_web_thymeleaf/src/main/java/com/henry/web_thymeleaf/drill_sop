@@ -1,0 +1,96 @@
+1 在项目依赖中添加 Thymeleaf的依赖项；
+2 创建一个POJO类型，用来封装 需要在页面中展示的数据model；
+    Person_01.java
+3 创建 作为脚本样式的静态文件(放置在 /resources目录下)；
+    这里为了方便，直接从 原始资源项目中拷贝过来 - 这个是作为工具存在的，不需要手动编写（类似于在pom文件中引入 项目依赖）
+    注：像是 样式文件、jQuery文件 都是静态文件。因为你的代码只会使用它，而不会编辑/改动它
+    /static 子目录
+        /bootstrap目录
+            /css 样式目录
+            /fonts 字体目录
+            /js 相关的js文件
+        jquery.js文件 - 操作DOM元素的工具
+4 创建演示页面，放在 resources/templates 目录下：
+    index.html
+    特征：在这个页面文件中， 就使用了Thymeleaf的语法 来 接收并处理 后台返回的model数据；
+    注：这里由于model中暂时没有数据，所以会出现页面的编译报错
+
+5 创建 controller，并在controller的方法中 准备 预期在页面中呈现的数据；
+    注：
+        1 这里为了简化，直接把 启动类 改造成 一个Controller类型。
+        2 向model中添加好 数据后，4中页面的报错信息就会消失
+
+6 运行走一波
+喜提报错：
+    org.thymeleaf.exceptions.TemplateProcessingException:
+        Only variable expressions returning numbers or booleans are allowed in this context,
+        any other datatypes are not trusted in the context of this expression,
+        including Strings or any other object that could be rendered as a text literal.
+
+        在这种情况下，只允许返回数字或布尔值的变量表达式，
+        此表达式的上下文中不信任任何其他数据类型，
+        包括字符串或可以呈现为文本文字的任何其他对象。
+
+        A typical case is HTML attributes for event handlers (e.g. "onload"),
+        in which textual data from variables should better be output to "data-*" attributes
+        and then read from the event handler.
+        典型的情况是事件处理程序的HTML属性（例如“ onload”），
+        最好将变量的文本数据输出到“ data- *”属性
+        然后从事件处理程序中读取。
+
+        (template: "index" - line 30, col 29)
+
+---
+一通乱搜之后，推测：可能是缺少对SpringMVC的配置 - 尝试添加上配置后，再次启动：
+
+任务：在 SpringMVC 中 添加模板引擎；
+手段：添加一个配置类型 - 用于配置Spring MVC相关的Bean；
+需要配置的东西(recap):
+    1 定义一个 ViewResolver；- 先要定义一个View类型；
+    2 方法中返回这个 ViewResolver的Bean实例；
+Thymeleaf所提供的特性支持：
+    1 准备好了 View(ThymeleafView.java) 与 ThymeleafViewResolver.java(默认使用 xxx 作为View)
+    2 提供了 SpringTemplateEngine类型 - 用来驱动 “在SpringMVC中使用 Thymeleaf模板引擎”；
+    3 提供了一个 TemplateResolver类型 - 用来设置 通用的模板引擎(包括前缀、后缀等)
+--
+子任务：在Spring MVC中 添加 Thymeleaf模板引擎；
+手段：
+    在 用于配置的Java类型中，添加 上述三个类型的Bean实例，并进行配置。
+
+---
+note：在Spring Boot中，在集成 Thymeleaf时，不需要对它进行单独的配置；
+原理：Spring Boot对 Thymeleaf进行了自动配置；
+具体手段：autoconfigure.thymeleaf包下的类型 ThymeleafAutoConfiguration.java
+
+暴力排错：
+对比 项目原始资源中的每一个文件，发现只有pom文件有不同。
+    新建的Spring Boot项目，默认pom中的 parent标签的值是 2.4.5。
+    而项目原始资源中的 pom文件的 parent标签的值是 <version>1.3.0.M1</version>
+
+修改版本后，pom文件的 project标签出现编译报错；
+解决手段：从原始资源的pom文件中， 拷贝 repositories标签 与 pluginRepositories标签 到 新建项目的pom文件。
+note: 由于把 spring-boot的版本 回退到了 1.3.0版本， 所以有些新版本提供的组合注解就不能使用了 😳
+
+重新运行项目：
+项目正常运行。
+
+果然，是因为Spring Boot的新版本对 字符安全性添加了新的限制。
+TBD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

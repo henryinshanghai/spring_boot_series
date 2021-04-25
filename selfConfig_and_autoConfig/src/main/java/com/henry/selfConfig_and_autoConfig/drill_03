@@ -12,6 +12,6 @@
         - 包含有META-INF/spring.factories;
         - 有完整的POJO配置流程；
     2 在 drill_AutoConfig 项目中，使用自动配置的特性；
-    
+
 
 

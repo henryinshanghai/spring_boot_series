@@ -1,1 +1,5 @@
 drill_AutoConfig/.idea/workspace.xml
+drill_web_thymeleaf/.gitignore
+drill_web_thymeleaf/.mvn/
+drill_web_thymeleaf/mvnw
+drill_web_thymeleaf/mvnw.cmd
