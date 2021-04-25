@@ -3,3 +3,9 @@ drill_web_thymeleaf/.gitignore
 drill_web_thymeleaf/.mvn/
 drill_web_thymeleaf/mvnw
 drill_web_thymeleaf/mvnw.cmd
+
+drill_config_tomcat/.gitignore
+drill_config_tomcat/.mvn/
+drill_config_tomcat/mvnw
+drill_config_tomcat/mvnw.cmd
+

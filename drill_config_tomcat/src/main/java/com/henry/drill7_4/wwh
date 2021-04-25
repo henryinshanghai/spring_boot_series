@@ -1,0 +1,65 @@
+怎样能够通过代码 来 配置Servlet容器呢？
+手段：定义一个Bean，实现 EmbeddedServletContainerCustomizer接口；
+参考：CustomServletContainer.java
+具体手段1：新建一个Bean；
+手段2：直接在 启动类中添加一个静态内部类；
+
+如何通过代码 来 配置 Tomcat、Jetty呢？
+手段：在配置类型中，直接定义 TomcatEmbeddedServletContainerFactory;
+
+===
+Spring Boot默认会使用Tomcat 来 作为内嵌的Servlet容器，如果想要使用Jetty呢？
+答：直接在pom中修改 dependency,排除tomcat，并引入 jetty 即可。
+
+
+===
+SSL配置
+
+SSL：Secure Sockets Layer 安全 套接 层。
+是：一个安全协议；
+作用：为网络通信提供 安全、数据完整性；
+特征：
+    1 它是在 网络传输层 对网络连接进行加密的。
+    2 它位于 TCP/IP协议 与 应用层协议 之间；
+原理：分两层；
+    1 SSL记录协议；
+        作用：为高层协议，提供数据封装、压缩、加密等基本功能；
+        特征：建立在 可靠的传输协议 之上；
+    2 SSL握手协议；
+        作用：在数据真正开始传输之前：
+            - 对通信双方进行身份认证
+            - 协商通信使用的加密算法
+            - 交换通信使用的加密密钥
+        特征：建立在 SSL记录协议 之上；
+用法：
+    在基于B/S的Web应用中，使用HTTPS 来 实现SSL；
+
+---
+HTTPS
+是：HTTP协议的安全版本；
+原理：在HTTP下面 添加 SSL层；
+
+---
+目标/任务：对Spring Boot项目做SSL配置；
+已知：Spring Boot使用的是内嵌的Tomcat作为Servlet容器；
+SOP：
+    1 获取一个证书；
+    手段：使用 JDK提供的keytool工具；
+    命令：keytool -genkey -alias tomcat
+    结果：会在当前目录下生成一个.ketstore文件 - 我们需要的证书文件。
+
+    2 在Spring Boot项目中配置SSL；
+    手段：
+        1 把ketstore文件 复制到 项目的根目录下面；
+        2 在 application.properties文件中 做SSL的配置：
+            参考：文件内容；
+
+---
+there's others things we can config, but I lost my time. so skip this for now
+
+to be done;
+- http转向 https;
+- 配置网站的 Favicon；
+
+
+
