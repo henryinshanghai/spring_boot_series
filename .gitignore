@@ -14,4 +14,10 @@ drill_web_websocket/.mvn/
 drill_web_websocket/mvnw
 drill_web_websocket/mvnw.cmd
 
+drill_web_websocket_point2point/.gitignore
+drill_web_websocket_point2point/.mvn/
+drill_web_websocket_point2point/mvnw
+drill_web_websocket_point2point/mvnw.cmd
+
+
 

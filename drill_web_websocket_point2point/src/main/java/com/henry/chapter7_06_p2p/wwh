@@ -1,0 +1,31 @@
+广播式双向通信的特征：无法确认通信方到底是谁；
+
+===
+点对点式的双向通信
+
+特征：能够明确通信方 - 谁发送了信息、谁接收了信息。
+SOP:
+    1 在项目中添加对 Security的依赖；
+    2 对 Security 进行基础的配置；
+        手段：继承特定的类型，重写特定的方法
+        参考：WebSecurityConfig.java
+    3 对WebSocket 进行配置；
+        手段：继承特定的类型，重写特定的方法
+        参考：WebSocketConfig.java
+    4 编写WebSocket通信的服务端 aka 控制器类：
+        手段：编写Spring MVC中的Controller层；
+        参考：WsController.java
+    5 添加登录页、聊天页面；
+        聊天页面中：
+            1 发送消息； - send to <request_path>
+            2 接收消息； - subscribe on <path_to_subscribe>
+    6 添加路径-页面跳转的配置;
+        参考：WebMvcConfig.java
+
+运行；
+预期效果：两个用户登录后，可以相互发送消息；
+由于在一个浏览器中用户会话 session是共享的，所以 - 需要在谷歌浏览器中设置两个独立的用户（这样用户的session就是彼此独立的）
+
+henry 与 jennifer之间可以互发消息；
+
+
