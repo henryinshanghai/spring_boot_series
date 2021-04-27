@@ -28,4 +28,11 @@ SOP:
 
 henry 与 jennifer之间可以互发消息；
 
+核心：
+1 对WebSocket的配置类；
+2 作为客户端的 chat.html页面；
+    - 这里用到了endpoint信息
+    - send to <request_path>
+    - subscribe on <path_to_subscribe> // 订阅地址就像是个信物，验明正身后，就可以发送消息了
+3 作为服务端的 WsController.java；
 
