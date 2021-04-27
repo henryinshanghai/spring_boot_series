@@ -9,3 +9,9 @@ drill_config_tomcat/.mvn/
 drill_config_tomcat/mvnw
 drill_config_tomcat/mvnw.cmd
 
+drill_web_websocket/.gitignore
+drill_web_websocket/.mvn/
+drill_web_websocket/mvnw
+drill_web_websocket/mvnw.cmd
+
+
