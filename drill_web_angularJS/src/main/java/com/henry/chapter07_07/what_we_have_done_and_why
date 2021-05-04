@@ -1,0 +1,73 @@
+目标：使用Bootstrap 与 AngularJS 以及 SpringBoot来创建一个Web应用；
+Web应用的特性 与 实现手段：
+    1 实现页面的导航；
+    手段：使用Bootstrap；
+
+    2 实现 导航切换页面时的路由功能；
+    手段：使用AngularJS；
+
+    3 实现 与REST服务交互(由Spring Boot提供)；
+    手段：使用 AngularJS提供的$http服务；
+
+    4 封装jquery UI的日期选择器；
+    手段：Angular JS中的自定义指令；
+
+SOP：
+1 新建Spring Boot项目，使用 web依赖；
+2 添加需要的静态资源 到 src/main/resources/static 目录下；
+    注：例子中所有的页面都只是静态页面，所以全部都放到 /static目录下面。
+
+3 实现 页面的导航功能 - action.html;
+    手段：
+        1 bootstrap提供的导航标签<nav> + Angular JS提供的路由的名称；
+        2 使用 <ng-view> 标签 来 展示载入的页面；
+        3 在页面中引入实现功能所需要的静态脚本文件(参考：action.html);
+
+4 定义 AngularJS中的 模块 与 路由（app.js） - 模块用于代码复用、路由用于建立请求路径 与 具体页面之间的映射关系；
+    具体步骤：
+        1 定义模块，并添加依赖；
+        2 对路由的映射关系进行配置 - 路由名称 + 路由的控制器名称 + 视图的地址；
+
+5 定义 控制器 - controllers.js
+    在控制器中可以：
+        1 在页面内容加载完成后，做一些事情； - 手段：$scope对象的$on()方法
+        2 进行与服务端的具体交互； = 手段：$http对象的get()方法
+        3 进行与页面的具体交互； - 手段：定义页面上可以调用的的方法 $scope.search = function() {...}
+
+6 创建view1页面 - view1.html
+    作用：用于 与服务端进行交互；
+    手段：
+        1 定义数据模型（用于接收controller中的方法参数） - 手段：ng-model属性
+        2 定义点击事件(发生点击时，调用controller中准备的方法) - 手段:ng-click="<方法名>()"
+        3 使用在controller中定义的数据模型 - 手段：{{dataModel}}
+
+7 编写服务端的代码；
+    1 用于传值的JavaBean - Person.java
+    2 用于对请求路径进行路由的控制器 - 直接在启动类上添加控制器 & 控制器方法；
+        手段：
+            1 @RestController
+            2 @RequestMapping
+
+8 创建自定义的页面指令 - directives.js
+    作用：自定义页面指令，以便在页面中使用更简洁的代码实现同样的功能； [代码简化、代码复用]
+    手段：<module_var>.directive('<directive_name>', function(){...})
+    具体语法：
+        1 restrict属性 - 限制指令的使用方式；
+        2 link属性 - 用来具体地定义指令；
+
+9 创建view2页面 - view2.html
+    作用：用于演示自定义的指令；
+
+10 运行Spring Boot项目；
+===
+操作1：在页面action.html 中，点击不同的菜单实现路由切换；
+操作2：在页面view1.html 中填写表单，与后台/服务器端进行交互；
+操作3：在页面view2.html 中 操作页面元素，验证自定义的指令有没有发挥作用；
+
+虽然不想这么说，但是即使是Spring Boot + BootStrap + AngularJS；
+编写了这么多的文件 与 交互，最后只是有2-3个有具体功能的页面，效率上感觉还是差了点意思
+
+
+
+
+

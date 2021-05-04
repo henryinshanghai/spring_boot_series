@@ -1,0 +1,23 @@
+  <div class="row"> <!-- 用于演示：与服务端进行交互  -->
+    <label for="attr" class="col-md-2 control-label">名称</label>
+    <div class="col-md-2">
+      <!-- 在页面中定义 数据模型model - 手段：ng-model属性 -->
+      <input type="text" class="form-control" ng-model="personName">
+    </div>
+    <div class="col-md-1">
+        <!-- 当发生点击时，调用控制器中定义的search方法   - 手段： ng-click属性 -->
+    	<button class="btn btn-primary" ng-click="search()">查询</button>
+    </div>
+  </div>
+  
+   <div class="row">
+     <div class="col-md-4">
+		  <ul class="list-group">
+            <!-- 访问控制器的scope里定义的person模型 - 手段：{{<model.property>}} - 特征：模型与视图双向绑定 -->
+		  	<li class="list-group-item">名字： {{person.name}}</li>
+		  	<li class="list-group-item">年龄：  {{person.age}}</li>
+		  	<li class="list-group-item">地址：  {{person.address}}</li>
+		  </ul>
+  </div>
+  </div>
+ 

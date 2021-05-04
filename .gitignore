@@ -19,5 +19,11 @@ drill_web_websocket_point2point/.mvn/
 drill_web_websocket_point2point/mvnw
 drill_web_websocket_point2point/mvnw.cmd
 
+drill_web_angularJS/.gitignore
+drill_web_angularJS/.mvn/
+drill_web_angularJS/mvnw
+drill_web_angularJS/mvnw.cmd
+
+
 
 
