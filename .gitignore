@@ -24,6 +24,10 @@ drill_web_angularJS/.mvn/
 drill_web_angularJS/mvnw
 drill_web_angularJS/mvnw.cmd
 
+drill_data_jpa/.gitignore
+drill_data_jpa/.mvn/
+drill_data_jpa/mvnw
+drill_data_jpa/mvnw.cmd
 
 
 
