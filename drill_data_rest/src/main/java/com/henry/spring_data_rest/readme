@@ -1,0 +1,26 @@
+Spring Data Rest
+作用：把repository 转换成为 REST服务；
+
+用法：在Spring Boot中使用 Spring Data Rest；
+验证：是不是成功把 repository抽象 转化成为了 REST服务；
+
+启动不成功，连接不上Oracle的数据库；
+报错信息：ORA12541 TNS no listener
+解决参考：https://stackoverflow.com/questions/13358656/oracle-client-ora-12541-tnsno-listener
+
+===
+对REST进行定制
+
+默认行为：REST资源的路径 在根目录（/）下；
+示例：http://localhost:8080/xxx
+定制目标：修改 REST资源的根路径为/api;
+手段：
+    在application.properties属性文件中，添加 spring.data.rest.base-path=/api
+
+
+2 定制web节点的路径
+默认行为：使用实体类后面添加上s 来 构成节点路径；
+目标： 修改 映射路径为 /people;
+手段： 在实体类Repo类型上，使用 @RepositoryRestResource注解的path属性
+参考：PersonRepo
+结果：访问REST服务的地址成为 - http://localhost:8080/api/people

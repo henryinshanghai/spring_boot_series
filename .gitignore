@@ -29,5 +29,10 @@ drill_data_jpa/.mvn/
 drill_data_jpa/mvnw
 drill_data_jpa/mvnw.cmd
 
+drill_data_rest/.gitignore
+drill_data_rest/.mvn/
+drill_data_rest/mvnw
+drill_data_rest/mvnw.cmd
+
 
 
