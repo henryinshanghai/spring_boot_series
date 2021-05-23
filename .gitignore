@@ -34,5 +34,10 @@ drill_data_rest/.mvn/
 drill_data_rest/mvnw
 drill_data_rest/mvnw.cmd
 
+dirll_data_transaction/.gitignore
+dirll_data_transaction/.mvn/
+dirll_data_transaction/mvnw
+dirll_data_transaction/mvnw.cmd
+
 
 
