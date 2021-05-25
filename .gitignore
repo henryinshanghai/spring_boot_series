@@ -39,5 +39,11 @@ dirll_data_transaction/.mvn/
 dirll_data_transaction/mvnw
 dirll_data_transaction/mvnw.cmd
 
+drill_data_cache/.gitignore
+drill_data_cache/.mvn/
+drill_data_cache/mvnw
+drill_data_cache/mvnw.cmd
+
+
 
 
