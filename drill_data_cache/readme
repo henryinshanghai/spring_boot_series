@@ -1,3 +1,79 @@
 尝试运行时的报错与解决：
 
 1 ORA-12505, TNS:listener does not currently know of SID given in connect descriptor
+这是因为Oracle的某个监听器没能正常启动。
+解决参考：
+    http://www.cxyzjd.com/article/a2940093904/88872823
+    https://blog.csdn.net/qq_37840993/article/details/79723799
+
+===
+项目启动成功！
+
+行为：
+预期：
+真实情况：
+
+数据库中数据的情况；xxx
+
+--
+测试@Cacheable注解是否生效；
+作用：添加 特定的数据到缓存中；
+action：
+    第一次从数据库中获取数据；
+    预期行为：一旦获取到数据后，就把数据添加到缓存中；
+    第二次获取相同数据时，直接从缓存中获取 - 而不会调用数据库；
+http://localhost:8080/able?id=139
+第一次请求时：
+    - 控制台出现了 SQL语句；
+    - impl方法中的 sout语句打印输出；
+    - postman中得到了请求结果。
+第二次请求时：
+    - postman中得到了请求结果；
+    - 控制台没有打印任何的SQL语句；
+    - impl方法中的sout语句没有输出；
+说明：数据的获取是从缓存中得到的，而不是数据库。 aka @Cacheable的确 把特定的key-value添加到 特定名称的缓存中了。
+
+---
+测试 @CachePut
+http://localhost:8080/put?name=cc&age=22&address=成都
+
+第一次执行：
+    - 数据库里添加了一条数据；
+    - 控制台出现了insert sql语句； id = 145
+    - impl中方法中的sout打印在控制台 - 说明方法被执行了
+
+再执行获取数据的请求：
+http://localhost:8080/able?id=145
+    - 控制台没有打印任何信息； - 说明数据是从缓存中获取到的 aka @CachePut注解 实现了预期功能
+
+--
+@CacheableEvict
+1 查询 id=141 的数据；
+    http://localhost:8080/able?id=141
+2 再次访问，确认数据已经被添加到缓存中；
+    控制台没有任何输出
+3 从缓存中删除 id=141的缓存数据；
+    http://localhost:8080/evit?id=141
+4 再次查询id=141的数据，观察控制台中 数据被重新缓存了。
+    http://localhost:8080/able?id=141
+
+
+===
+切换缓存技术
+
+- 使用 EhCache 来 作为缓存技术；
+SOP：
+    1 引入 EhCache的依赖包；
+    2 在类路径下，添加 EhCache所需要的配置文件 ehcache.xml；
+        特征：Spring Boot会能够自动扫描到这个文件，并使用其中的信息 来 对EhCache进行配置；
+
+- 使用Guava 来 作为缓存技术；
+SOP：
+    1 引入相关依赖；
+
+- 使用Redis 来 作为缓存技术；
+SOP：
+    1 引入相关依赖；
+    特征： Spring Boot会自动为我们配置 RedisCacheManager 与 RedisTemplate的Bean。
+
+注：这些切换缓存技术的做法并没有进行代码实践。
