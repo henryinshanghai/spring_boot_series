@@ -44,6 +44,10 @@ drill_data_cache/.mvn/
 drill_data_cache/mvnw
 drill_data_cache/mvnw.cmd
 
+drill_data_mongodb/.gitignore
+drill_data_mongodb/.mvn/
+drill_data_mongodb/mvnw
+drill_data_mongodb/mvnw.cmd
 
 
 

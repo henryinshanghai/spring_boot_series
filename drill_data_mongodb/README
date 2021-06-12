@@ -1,0 +1,34 @@
+application.properties文件中不需要添加任何配置
+因为Spring Boot已经为开发者完成了所有需要的配置工作：
+- 1 数据库连接；
+    Spring Boot所提供的默认属性：
+    - 默认MonogDB服务的端口：27017；
+    - 默认所使用的服务器： localhost;
+    - 默认所使用的数据库： test
+- 2 MongoTemplate；
+
+======
+在Spring Boot项目中使用MongoDB的过程回顾：
+
+1 引入所需要的依赖
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-mongodb</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+
+2 准备实体类 - 一个对象 映射到MongoDB中的一条记录
+Person、Location
+
+3 准备Dao层接口；
+PersonRepository.java
+    作用：定义DAO层的查询方法；
+    特征：
+        1 继承自MongoRepository类型；
+        2 可以通过多种手段 来 定义查询方法的规则；
+        3 继承得到了很多的基本DAO操作方法，所以基础的CURD不需要编写执行语句；
+
+4 准备controller，方便通过HTTP端点对DAO层的操作进行测试。
