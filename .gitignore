@@ -50,4 +50,9 @@ drill_data_mongodb/mvnw
 drill_data_mongodb/mvnw.cmd
 
 
+drill_data_redis/.gitignore
+drill_data_redis/.mvn/
+drill_data_redis/mvnw
+drill_data_redis/mvnw.cmd
+
 

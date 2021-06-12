@@ -1,0 +1,51 @@
+Spring Boot所提供的默认配置就能够连接到 localhost的Redis数据库。
+所以 application.properties属性文件中不需要添加任何的配置信息。
+
+======
+在Spring Boot项目中使用Redis作为数据存储方案；
+
+0 注：由于所继承的Spring Boot的版本不同，会导致引入的starter依赖版本也不一样 -> 最终代码中的用法有所不同
+    这里继承的是
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.3.0.M2</version>
+
+1 引入需要的依赖；
+        dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+2 准备需要的实体类型； // 用于存储其对象到Redis
+    Person.java;
+    注：这里的实体类型需要 继承自 Serializable - 以便能够在需要的时候反序列化得到对象本身；
+
+3 准备执行DAO操作的接口/类型；
+    PersonDao.java
+    特征：
+    - 不同于MongoDB，这个类型没有继承/实现任何接口；
+    - 底层负责执行DAO操作的组件(xxxRedisTemplate)：
+        StringRedisTemplate stringRedisTemplate;
+        RedisTemplate<Object, Object> redisTemplate; //2 同1
+    - 具体执行DAO操作的组件：
+        ValueOperations<String,String> valOpsStr;
+        ValueOperations<Object, Object> valOps;
+    - 这里需要使用 @Resource 来 把redisTemplate Bean实例注入到 valOpsStr中；
+        疑问：它们都不是同一种类型，使用 @Resource进行绑定，为什么不会报错呢？
+        参考：https://blog.csdn.net/u012123179/article/details/105892392
+
+4 准备HTTP端点，以便能够通过URL来操作数据；
+
+5 执行HTTP端点，（结合可视化工具Redis Desktop Manager）查看数据库中有没有预期的变化；
+
+    http://localhost:8080/set - 向Redis数据库中添加 key-value
+    http://localhost:8080/getStr - 获取到 值为string的 value
+    http://localhost:8080/getPerson - 获取到 值为对象的 value
+
+    CRUD
+
+Peace out~
+突然能够按响 爱的罗曼史中的横按，有点子激动
