@@ -55,4 +55,8 @@ drill_data_redis/.mvn/
 drill_data_redis/mvnw
 drill_data_redis/mvnw.cmd
 
+drill_enterprise_security/.mvn/
+
+drill_enterprise_security/mvnw
+drill_enterprise_security/mvnw.cmd
 

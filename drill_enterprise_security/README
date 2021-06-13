@@ -1,0 +1,72 @@
+0 配置到Oracle数据库的连接；
+
+1 添加css文件到特定路径
+注：src/main/resources/static/css 路径默认不会被拦截；
+有啥用呢？
+
+2 准备User实体类 与 Role实体类；
+
+3 配置：根据实体类来生成数据表结构(Hibernate的功能)；
+    spring.jpa.hibernate.ddl-auto=update
+
+4 准备数据表中的数据 - 手段：sql文件；
+    E:\develop\tryout_springBoot\drill_enterprise_security\src\main\resources\data.sql
+
+5 准备用来给页面显示的对象；
+    Msg.java
+
+6 准备DAO层的类型/接口；
+    SysUserRepository.java
+
+7 准备service层，来添加更多的逻辑；
+    \security\CustomUserService.java
+
+8 对Spring MVC做一些 定制化的配置；- 方便测试
+
+9 对 Spring Security做一些定制化的配置；- note:这里才是重点；
+WebSecurityConfig.java
+    特征：
+    - 继承自 WebSecurity_ConfigurerAdapter.java
+    - 重写config(auth) 与 config(http)方法来实现具体配置；
+        对用户认证的配置：重写config(auth)方法；
+            这里可以添加自定义的 Security用户实现(一个类型)，这样 spring security就会能够根据真实情况去查找用户的数据源(而不是要在代码中手段配置)
+            手段：
+                1 自定义类型，实现UserDetailService接口；
+                2 重写其中的loadUserByUsername(username)方法；
+
+        对请求/访问路径的配置：重写config(http)方法；
+            做法：先拦截当前的请求路径，然后查看当前用户的权限。再做对应的安全处理
+            手段：
+                1 请求拦截； - 匹配器 antMatches()、regexMatches()、anyRequest();
+                2 安全处理方法；
+                    aka 描述 当前用户需要有怎样的权限时，才能成功访问当前匹配到的路径；
+                    手段：hasRole()、hasAnyRole()、authenticated()【表示用户登录后即可访问】
+
+                --- more config can do ---
+                3 定制登录行为；
+                    手段: 从formLogin()方法开始，需要定制什么 就.什么方法；
+                    示例：
+                        .formLogin()
+                            .loginPage("/login") // 登陆页面的路径为/login
+                            .failureUrl("/login?error")
+                            .permitAll() // Ⅱ 定制登录行为：登录页面可以任意访问
+
+
+===
+JPA的东西还是要复习一下
+复习结果：
+    Spring Data JPA 只是 Spring Data项目的一个子项目。它的作用是操作数据
+    同级的子项目有：Spring Data Redis、Spring Data MongoDB、Spring Data REST；
+    这么多个子项目都能够使用统一的方式来操作数据，原理是：Spring Data Common提供的抽象 - Spring Data Repository;
+
+用法上其实还算复杂吧，尤其是自定义Repo。现在还不明白为什么要这么做，以及什么能做成功？
+参考项目：drill_data_jpa
+
+再看了一遍，自定义Repo是为了能够封装开发者自己经常使用的DAO操作。
+而这里自定义的Repo并不是 领域类的Repo；
+疑问：直接在领域类Repo里定义DAO操作有什么问题吗？
+
+感觉上为了实现自定义Repo，代价很是不小
+
+
+
