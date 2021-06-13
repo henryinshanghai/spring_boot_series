@@ -60,3 +60,8 @@ drill_enterprise_security/.mvn/
 drill_enterprise_security/mvnw
 drill_enterprise_security/mvnw.cmd
 
+drill_enterprise_batch/.mvn/
+drill_enterprise_batch/mvnw
+drill_enterprise_batch/mvnw.cmd
+
+

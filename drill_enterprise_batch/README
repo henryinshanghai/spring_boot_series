@@ -1,0 +1,88 @@
+启动时遇到的问题列表：
+
+nested exception is java.sql.SQLSyntaxErrorException: ORA-00955: 名称已由现有对象使用
+因为数据库中已经存在了数据表PERSON
+
+手段：改一下新建的数据表的名字为 PERSON_BATCH。
+
+nested exception is java.sql.SQLException: ORA-08177: 无法连续访问此事务处理
+手段：jobRepositoryFactoryBean.setIsolationLevelForCreate("ISOLATION_READ_COMMITTED");
+参考：https://my.oschina.net/u/2262481/blog/1798550
+
+还需要同步修改代码中的sql语句，否则会出现BadSQLException
+
+======
+直接运行项目：
+
+1 这么多表都是谁建的？
+当然是Spring Boot给好心建的呀
+
+BATCH_JOB_xxx
+BATCH_STEP_xxx
+
+Job中定义的任务执行了吗？
+Job中定义了啥任务呢？
+1 添加了对Job的监听器；
+    监听器起作用了吗？
+        YES
+        任务处理开始
+        2021-06-13 11:46:23.770  INFO 21588 --- [           main] o.s.batch.core.job.SimpleStepHandler     : Executing step: [step1]
+        任务处理结束
+        耗时:530ms
+
+2 读取csv文件 并映射到领域类Person上；
+    转换成了POJO对象了吗？
+        从最终执行的结果上看，YES
+
+3 处理读取到的数据Item； //2 对数据的处理逻辑 - 出于演示目的 越简单越好
+    数据被处理了吗？
+    YES
+
+4 把数据批量插入到person_batch数据表中；
+    数据插入成功了吗？
+    YES
+
+---
+验证Validation是否生效；
+手段：修改name的size限制。然后启动程序
+特征：如果数据表已经存在，再次运行程序时，Spring Boot会尝试再新建数据表。这时就会有 Caused by: java.sql.SQLSyntaxErrorException: ORA-00955: 名称已由现有对象使用 的错误；
+workaround：重启像目前，删掉既有的数据表 person_batch;
+
+删表后，重新启动程序。
+结果： org.springframework.batch.item.validator.ValidationException: 个数必须在2和3之间
+说明校验生效了
+
+
+---
+advanced demand：手动触发任务
+手段：添加一个web端点，用来给开发者随时手动触发批量任务；
+做法SOP：
+    1 注释掉配置类的 @Configuration注解；
+        使得配置类不再生效
+    2 新建一个配置类 TriggerBatchConfig.java
+        修改reader()的内容 - 以便读取配置文件中的path设置
+    3 新建控制器类，为开发者提供一个端点 来 手动触发Job；
+    4 关闭Spring Boot “自动执行Job”的配置；
+
+删除 PERSON_BATCH数据表，然后运行项目。通过浏览器调用端点
+验证 Job有没有按照预期执行：
+
+特征：项目一旦执行，建表语句就会被执行；
+Executing SQL script from URL [file:/E:/develop/tryout_springBoot/drill_enterprise_batch/target/classes/schema.sql]
+
+通过浏览器调用端点：
+http://localhost:8090/imp?fileName=people
+
+结果：Job被成功手动触发；
+发生了什么？
+1 Job没有被自动触发；
+2 监听器正常工作；
+3 Job的Reader、Processor、Writer正常工作；
+
+Period. see you afternoon 😄
+今天是端午节吗？
+
+
+
+
+
