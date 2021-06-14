@@ -1,0 +1,26 @@
+如何使用JMS？
+1 引入相关的依赖；
+    spring-jms
+    activemq-client
+
+2 开启activemq的本地服务，并在配置文件中进行配置
+    spring.activemq.broker-url=tcp://localhost:61616 # activemq默认使用的TCP连接端口是61616
+
+3 定义JMS所发送的消息实体
+    Msg.java
+
+4 定义消息的发送 & 确保发送行为被执行
+    @Override
+    public void run(String... strings) throws Exception {
+        // 发送消息 手段：send(destination, message)
+        // 特征：相当于同时 在消息代理中定义了一个 叫做my-destination的目的地
+        jmsTemplate.send("my-destination", new Msg());
+    }
+5 定义 消息接收者对目的地的监听 - 以便接收消息
+    Receiver.java
+
+
+===
+使用JMS的预期是什么？
+
+在sender发出消息到目的地后，receiver能够取出消息 并使用它来执行后继操作 - 在这里就是把消息打印到控制台

@@ -64,4 +64,9 @@ drill_enterprise_batch/.mvn/
 drill_enterprise_batch/mvnw
 drill_enterprise_batch/mvnw.cmd
 
+drill_enterprise_jms/.mvn/
+drill_enterprise_jms/mvnw
+drill_enterprise_jms/mvnw.cmd
+
+
 
