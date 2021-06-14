@@ -68,5 +68,8 @@ drill_enterprise_jms/.mvn/
 drill_enterprise_jms/mvnw
 drill_enterprise_jms/mvnw.cmd
 
+drill_enterprise_amqp/.mvn/
+drill_enterprise_amqp/mvnw
+drill_enterprise_amqp/mvnw.cmd
 
 

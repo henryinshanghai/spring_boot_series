@@ -1,0 +1,78 @@
+0 首先 需要下载RabbitMQ；
+    这个就不太简单，起码通过Windows installer下载时，需要跑到Github上去下载源码...
+    不应该是一个安装向导 然后next吗？
+
+    源码下载后，该要怎么做呢？
+    切换到指定的tag 最新的tag是 v3.8.11
+    切换分支很容易，但是如何切换tag呢？
+    为什么下载到的文件夹竟然不是一个git管理的目录呢？
+    的确不是，使用choco install rabbitmq命令安装时，是能够看到 RabbitMQ的下载路径的 - https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.8.11/rabbitmq-server-3.8.11.exe
+
+
+    另一种方式是通过 chocolatey 来安装：
+    这是一种命令行的安装方式，因此不确定具体的安装位置是在什么地方...
+
+    两种方式正在同步进行中 // 从官网下载，耗时很久 希望能够正常启动服务吧
+
+    设置choco作为下载工具： https://www.jianshu.com/p/be19a2bebc48
+
+Windows下安装RabbitMQ的另一个教程(非参考官网)：
+https://blog.csdn.net/u013294097/article/details/81476018
+注：这种从百度云下载的可能会快一些
+
+1 erlang、rabbitmq都已经下载、安装完成后，就可以本地启动RabbitMQ了；
+erlang的安装目录：C:\Users\HenryInSH\AppData\Local\Temp\chocolatey\erlang\22.3\otp_win64_22.3.exe (90.6 MB)
+rabbitmq的下载地址：https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.8.11/rabbitmq-server-3.8.11.exe
+rabbitmq的安装目录：C:\Users\HenryInSH\AppData\Local\Temp\chocolatey\rabbitmq\3.8.11\rabbitmq-server-3.8.11.exe (17.06 MB)
+
+土猪呀土猪 你为什么一定要去拱白菜呢？
+
+启动步骤：
+    - 找到安装目录下的 rabbitmq-service.bat 脚本文件；双击运行
+    - 查看服务列表中，有没有 RabbitMQ服务；
+
+
+
+Most common reasons for this are:
+
+ * Target node is unreachable (e.g. due to hostname resolution, TCP connection or firewall issues)
+ * CLI tool fails to authenticate with the server (e.g. due to CLI tool's Erlang cookie not matching that of the server)
+ * Target node is not running
+
+这个问题绕不过去了
+
+重新下载了erlang与rabbitMQ - 因为本地已经有了它们的windows installer，所以这个过程还算挺快的
+但是配置的环境变量却一直生效不了
+手段1：删除掉 C/Program File中对应的安装目录；
+手段2：在 应用和功能 中找到erlang这个应用，然后卸载；
+手段3：重启电脑
+
+最后一招：找到残余的erlang.exe文件 - 在C:\ProgramData\chocolatey\bin下面
+chocolatey是一个安装软件的工具，删除它下面的erlang.exe之后。
+环境变量就可以正常工作了
+
+但是能不能通过web来访问到启动的RabbitMQ服务呢？
+并不能 这是一条错误的路
+
+终于找到一个好使的教程 阿弥陀佛：https://cloud.tencent.com/developer/article/1710660
+对于Erlang 与 RabbitMQ 卸载掉自定义的install_path，然后重新安装 - 安装到默认的安装路径中去。
+
+终于，耗时N小时后。在互联网上找到了能够解决问题的信息
+
+2 发送信息 & 声明目的地
+    xxx implements CommandLineRunner {}
+
+3 receiver监听 目的地中的消息；
+
+最终程序的预期行为：
+    在控制台打印出原始的message信息 : Received <来自于 RabbitMQ 的问候>
+Bingo~
+
+===
+依赖的一点问题
+
+Test类上的注解是旧版本的test起步依赖提供的；
+pom文件中起步依赖的版本是从 parent标签中继承来的；
+新创建的Spring Boot项目的 parent标签默认只能选择2.5.x;
+
+所以这里需要手动修改version为 1.3.0.M2 - 这样就能避免编译报错了

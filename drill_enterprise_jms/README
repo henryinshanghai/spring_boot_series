@@ -5,6 +5,8 @@
 
 2 开启activemq的本地服务，并在配置文件中进行配置
     spring.activemq.broker-url=tcp://localhost:61616 # activemq默认使用的TCP连接端口是61616
+    安装与启动服务的相关参考：https://blog.csdn.net/jiuqiyuliang/article/details/47160259
+    activemq的more启动端口：http://127.0.0.1:8161/admin/
 
 3 定义JMS所发送的消息实体
     Msg.java
