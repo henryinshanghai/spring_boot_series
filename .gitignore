@@ -76,3 +76,7 @@ drill_enterprise_integration/.mvn/
 drill_enterprise_integration/mvnw
 drill_enterprise_integration/mvnw.cmd
 
+drill_test_springboot/.mvn/
+drill_test_springboot/mvnw
+drill_test_springboot/mvnw.cmd
+
