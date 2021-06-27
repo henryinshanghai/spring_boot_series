@@ -10,41 +10,42 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-
     <groupId>com.henry</groupId>
-    <artifactId>test_springboot_demo</artifactId>
+    <artifactId>application_monitor_demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>test_springboot_demo</name>
-    <description>Demo project for how to write test code in Spring Boot</description>
 
+    <name>application_monitor_demo</name>
+    <description>Demo project for how to monitor the status of a running Spring Boot application</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
     </properties>
 
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-hateoas</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- 内存方式的数据库 -->
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
@@ -93,5 +94,4 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-
 </project>

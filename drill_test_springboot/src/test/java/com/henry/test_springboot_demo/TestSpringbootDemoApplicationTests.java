@@ -65,7 +65,7 @@ public class TestSpringbootDemoApplicationTests {
                 .perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON))
                 .andReturn();
 
-        
+
         //7 获取到执行结果中的status
         int status = result.getResponse().getStatus();
         //8 获取到执行结果中的content

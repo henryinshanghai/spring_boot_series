@@ -80,3 +80,8 @@ drill_test_springboot/.mvn/
 drill_test_springboot/mvnw
 drill_test_springboot/mvnw.cmd
 
+drill_monitor_http/.mvn/
+drill_monitor_http/mvnw
+drill_monitor_http/mvnw.cmd
+
+

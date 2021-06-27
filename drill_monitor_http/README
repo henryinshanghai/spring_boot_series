@@ -1,0 +1,48 @@
+不同版本的Spring Boot项目所提供的端点的返回值有所不同
+
+默认初始化器生成的版本为2.5.1。书中使用的版本为：1.3.0.M4
+
+http://localhost:8080/actuator # Spring Boot所提供的所有端点
+
+/autoconfig # Spring Boot为当前应用所添加的所有自动配置
+    this is a lot.
+
+/beans # 当前应用的Spring容器中所有的bean
+    also, a lot.
+
+/dump # 显示当前应用中所有的 线程状态
+
+/configprops # 显示当前应用中所配置的所有属性
+
+/health # 显式当前应用的健康状态
+
+/info # 没啥用
+
+/metrics # 显示当前应用的各种指标
+
+/mappings # 显示当前应用中所有的@RequestMapping 所映射的路径
+
+/shutdown # 关闭当前应用程序
+注：这是一个有害的操作，因此默认情况下 这个端点是关闭的
+为了测试这个端点，需要先开启它。
+手段： endpoints.shutdown.enabled=true
+这是一个POST请求，所以不能直接在浏览器中访问。而需要使用到Postman工具
+
+响应：
+{
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/shutdown",
+            "templated": false
+        }
+    },
+    "message": "Shutting down, bye..."
+}
+
+/trace # 显示对最近一次http请求的追踪信息(请求、响应...)
+
+
+===
+自定义端点
+
+suspending this, we just have a hard looking on Java8(lambda、method reference、Stream API)
