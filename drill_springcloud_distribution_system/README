@@ -1,0 +1,81 @@
+如何创建 分布式项目？
+1 创建Maven项目，然后删除掉 /src目录；
+2 在项目中依次添加Spring Boot模块：
+    - 服务发现 service； // 用于注册所有的Biz service 以及 common service
+    - 存储外部化配置 service； // 用于方便、统一化地管理分布式系统中 各个服务的配置信息
+    - 业务服务 person service; // 用于提供业务服务1
+    - 业务服务 some service; // 用于提供业务服务2
+    - UI服务 ui service // 用于给用户提供单一的操作界面；会调用具体的业务服务1+2；
+    - 断路器监控 monitor service; // 用于 监控断路器的工作是否符合预期
+
+===
+验证添加的这些个东西到底有没有按照预期地工作：
+手段：
+    1 先启动common service: 服务发现service、存储外部化配置service；
+    2 再启动 Biz service: person service、some service;
+    3 再启动给用户使用的 UI service： ui service;
+    4 最后启动 monitor service.
+
+1 查看 Eureka注册中心是否正常工作 - 其他的服务是不是都已经把自己添加到 Eureka Server上了。
+手段：访问 Eureka Server的service： http://localhost:8761
+预期结果：其他5个服务都出现在服务列表中；
+结果：符合预期
+
+note 把自己注册成为 Eureka Client的手段：再启动类上添加 @EnableEurekaClient注解。
+
+
+2 查看各个Biz服务是否正常启动；
+手段：
+    1 通过浏览器地址栏来访问UI服务：http://localhost
+    预期：出现准备好的index.html页面；
+
+    2 在页面中，通过点击按钮来调用具体的Biz服务；
+    - Ⅰ 点击Person服务，尝试保存功能；
+    - Ⅱ 点击Some服务，尝试获取功能；
+
+3 查看断路器是否按照预期工作 - aka 如果正常的服务挂掉了，断路器提供的fallback能够被执行
+手段：
+    1 停掉Biz服务们；
+    2 在页面上调用Biz服务们；
+预期：为Biz服务们准备的fallback将会被执行；
+结果：符合预期。
+
+4 查看断路器的工作情况；
+手段：
+    1 访问 monitor服务，并访问到Hystrix所提供的具体端点 /hystrix.stream - http://localhost:8989/hystrix.stream
+    2 在得到的页面中，在输入框中输入 - http://localhost/hystrix.stream
+    预期：在页面中能够查看到所有断路器的运行情况；
+    结果：虽然看不懂到底应该看什么东西，但是应该是符合预期的。
+
+
+===
+分布式结构引入的新问题 - 如何对分布式结构中的各个微服务进行部署呢？
+思路：既然各个微服务其实都是 Spring Boot项目，那编译得到的结果无非就是一个个独立的jar包。
+
+默念：部署用Docker、部署用Docker、部署用Docker；
+所以为什么不使用Docker来做自动部署呢？好主意
+
+单个服务的自动部署流程（使用config服务作为例子）：
+Dockerfile的编写
+    1 在src/main/docker目录下，创建 runboot.sh脚本文件；
+        作用：？？？
+    2 在src/main/docker目录下, 编写Dockerfile文件；
+        作用：用于构架微服务模块的镜像文件 - 进而在Docker中进行部署；
+        特征：对于不同的微服务，只需要修改Dockerfile中的 ADD jar的命令 + EXPOSE <port>的命令
+    3 在pom.xml文件中 添加Maven为Docker提供的插件；
+        插件作用：编译Docker镜像 到服务器上。
+    4 编译镜像到指定的服务器；
+        手段：在系统环境中添加 <variable_name>:<server_path>的系统变量；
+    5 执行命令，把微服务编译成Docker镜像，并将得到的镜像添加到指定的服务器上。
+        mvn clean package docker:build -DskipTests
+
+    验证手段：
+        登录服务器，查看服务器上的镜像列表中有没有刚刚添加的镜像；
+
+更多内容，先消化下现有的东西 see u around
+
+
+
+
+
+

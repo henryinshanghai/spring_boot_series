@@ -1,0 +1,5 @@
+在Spring Cloud应用中，可以：
+    使用 bootstrap.yml / bootstrap.properties 文件 来 从外部资源中读取/加载配置属性。
+
+在分布式结构中，各个服务的配置文件的命名规则：<服务名>+profile.yml
+

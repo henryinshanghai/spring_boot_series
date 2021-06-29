@@ -1,0 +1,3 @@
+把index.html文件作为首页文件 看起来是默认行为。 不需要单独配置
+
+也就是说 访问http://localhost，会直接跳转到index.html

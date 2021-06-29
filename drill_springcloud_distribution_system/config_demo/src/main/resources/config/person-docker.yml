@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    database: POSTGRESQL # 配置所使用的数据库为 PostgreSQL - 准备用于Docker生产环境，需要在person服务的profile来指定使用此配置
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://postgres:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver

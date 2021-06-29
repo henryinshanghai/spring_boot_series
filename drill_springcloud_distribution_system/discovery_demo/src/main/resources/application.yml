@@ -1,0 +1,10 @@
+server:
+  port: 8761 # 声明此Eureka服务启动时会监听的端口号
+
+eureka:
+  instance:
+    hostname: localhost # 声明此Eureka服务对外的主机名
+  client:
+    register-with-eureka: false # 声明：当前服务不需要注册到 Eureka Server上
+    fetch-registry: false
+    

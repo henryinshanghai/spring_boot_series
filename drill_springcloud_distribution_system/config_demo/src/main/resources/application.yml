@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config #1 声明：其他服务的配置文件应该放置的位置 - 这里要求其他服务 把自己的配置文件放在 “当前服务类路径下的/config目录中”
+
+server:
+  port: 8888

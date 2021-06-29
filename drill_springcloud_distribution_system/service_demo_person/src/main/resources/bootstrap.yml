@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: person
+  cloud:
+    config:
+      enabled: true
+      discovery:
+        enabled: true
+        service-id: CONFIG #1 声明当前服务 所使用的config server服务的名称【注：当前服务会通过Eureka Server 来具体发现 config server服务】
+eureka:
+  instance:
+    non-secure-port: ${server.port:8082}
+  client:
+    service-url:
+      defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/

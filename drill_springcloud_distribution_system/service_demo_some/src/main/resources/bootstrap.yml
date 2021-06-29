@@ -1,0 +1,15 @@
+spring: # spring cloud会使用 bootstrap.yml 文件 来 从外部资源加载属性
+  application:
+    name: some
+  cloud:
+    config:
+      enabled: true
+      discovery:
+        enabled: true
+        service-id: CONFIG # 指定 config server的服务名
+eureka:
+  instance:
+    non-secure-port: ${server.port:8083} # {A:B} 这种语法类似于三目运算符 - 如果A有值，则表达式的值为A。否则为B 这里的server.port 应该是从application.yml中去取值
+  client:
+    service-url:
+      defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/

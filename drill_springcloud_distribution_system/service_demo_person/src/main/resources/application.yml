@@ -1,0 +1,10 @@
+server:
+  port: 8082
+ 
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update # 根据实体类 来自动维护 数据表结构； - 这是Hibernate提供的功能 - 配置手段：spring.jpa.hibernate.ddl-auto
+      # 可选项：create、create-drop、update、validate、none
+
